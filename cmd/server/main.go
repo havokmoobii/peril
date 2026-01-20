@@ -55,7 +55,9 @@ func main() {
 			fmt.Println("Pause message sent!")
 		case "resume":
 			fmt.Println("Sending a resume message.")
-			err = pubsub.PublishJSON(channel, routing.ExchangePerilDirect, routing.PauseKey, routing.PlayingState{})
+			err = pubsub.PublishJSON(channel, routing.ExchangePerilDirect, routing.PauseKey, routing.PlayingState{
+				IsPaused: false,
+			})
 			if err != nil {
 				log.Fatalf("Could not publish time: %v\n", err)
 			}
